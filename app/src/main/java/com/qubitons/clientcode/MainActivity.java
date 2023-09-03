@@ -59,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
                             // Open the URL in the default web browser
                             Map<String, Object> map = (Map<String, Object>) response.get("message");
                             log.info("Response " + map);
-                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse((String) map.get("client_url")));
+                            Intent browserIntent = new Intent(getApplicationContext(), WebViewActivity.class);
+                            browserIntent.putExtra("client_url", (String) map.get("client_url"));
                             startActivity(browserIntent);
                         } else {
                             //In case of failure

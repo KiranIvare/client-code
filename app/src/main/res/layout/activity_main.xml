@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background12"
-    tools:context="com.qubtions.clientcode.clientcode.MainActivity">
+    tools:context="com.qubitons.clientcode.MainActivity">
 
     <ImageView
         android:layout_width="78dp"
