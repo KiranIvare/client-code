@@ -1,4 +1,4 @@
-package com.example.clientcode;
+package com.qubitons.clientcode;
 
 import org.junit.Test;
 

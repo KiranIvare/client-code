@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.clientcode"
+    namespace = "com.qubitons.clientcode"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.clientcode"
+        applicationId = "com.qubitons.clientcode"
         minSdk = 26
         targetSdk = 33
         versionCode = 1
