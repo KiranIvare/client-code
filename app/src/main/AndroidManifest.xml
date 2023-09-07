@@ -27,6 +27,7 @@
             android:name="com.qubitons.clientcode.WebViewActivity"
             android:exported="false"
             />
+
     </application>
 
 </manifest>
