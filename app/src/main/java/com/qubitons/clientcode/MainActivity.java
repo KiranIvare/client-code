@@ -44,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
                 // Retrieve the client code entered by the user
                 String clientCode = editTextClientCode.getText().toString().trim();
 
-                if (isValidClientCode(clientCode)) {
+                if (clientCode.isEmpty()) {
+                    // Show an error message when the client code is empty
+                    Toast.makeText(getApplicationContext(), "Enter the client code", Toast.LENGTH_SHORT).show();
+                } else if (isValidClientCode(clientCode)) {
                     // Construct the URL with the client code
                     String url = "https://www.qubitons.com/clients/" + clientCode;
                     Map<String, Object> response;
@@ -53,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         response = null;
                     }
-                    if(response != null) {
+                    if (response != null) {
                         String status = (String) response.get("status");
-                        if(status.equals("success")) {
+                        if (status.equals("success")) {
                             // Open the URL in the default web browser
                             Map<String, Object> map = (Map<String, Object>) response.get("message");
                             log.info("Response " + map);
@@ -63,24 +66,25 @@ public class MainActivity extends AppCompatActivity {
                             browserIntent.putExtra("client_url", (String) map.get("client_url"));
                             startActivity(browserIntent);
                         } else {
-                            //In case of failure
+                            // In case of failure
                             Map<String, Object> data = (Map<String, Object>) response.get("message");
-                            if(data != null) {
+                            if (data != null) {
                                 String message = (String) data.get("data");
-                                log.info("Error Response" +  message);
-                                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+                                log.info("Error Response" + message);
+                                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                             }
                         }
                     } else {
-                        Toast.makeText(getApplicationContext(), "Invalid Response", Toast.LENGTH_SHORT);
+                        // Display "Client code is invalid" when client code is not found
+                        Toast.makeText(getApplicationContext(), "Client code is invalid", Toast.LENGTH_SHORT).show();
                     }
-
                 } else {
                     // Handle invalid client code, e.g., show an error message
-                    mTextViewResult.setText("Invalid Client Code");
+                    Toast.makeText(getApplicationContext(), "Invalid Client Code", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
     }
 
     // Validate the client code (customize this according to your validation criteria)
